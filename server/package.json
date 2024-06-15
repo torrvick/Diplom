@@ -3,5 +3,13 @@
     "express": "^4.18.2",
     "lodash": "^4.17.21",
     "sqlite3": "^5.1.1"
+  },
+  "name": "my-notes-server",
+  "version": "1.0.0",
+  "description": "Notes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "pkg server.js --out-path dist --target node18-linux-x64"
   }
 }

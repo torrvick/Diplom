@@ -49,29 +49,6 @@ app.get('/api/notes', (_req, res) => {
 	});
 });
 
-app.get('/api/settings', (_req, res) => {
-	db.all('SELECT * FROM settings', (err, rows) => {
-		if (err) {
-			console.error(err.message);
-			res.status(500).json({ error: 'Внутренняя ошибка сервера' });
-		} else {
-			res.json(rows);
-		}
-	});
-});
-
-app.put('/api/settings/', (req, res) => {
-	const { param, value } = req.body;
-	db.run(`UPDATE settings SET value = ? WHERE param = ?`, [value, param], (err) => {
-		if (err) {
-			console.error(err.message);
-			res.status(500).json({ error: 'Внутренняя ошибка сервера' });
-		} else {
-			res.json({ message: 'Натройки сохранены' });
-		}
-	});
-});
-
 app.get('/api/notes/:id', (req, res) => {
 	const noteId = req.params.id;
 	db.get('SELECT * FROM notes WHERE id = ?', [noteId], (err, row) => {
@@ -141,6 +118,29 @@ app.delete('/api/notes/:id', (req, res) => {
 			res.status(500).json({ error: 'Внутренняя ошибка сервера' });
 		} else {
 			res.json({ message: 'Заметка успешно удалена' });
+		}
+	});
+});
+
+app.get('/api/settings', (_req, res) => {
+	db.all('SELECT * FROM settings', (err, rows) => {
+		if (err) {
+			console.error(err.message);
+			res.status(500).json({ error: 'Внутренняя ошибка сервера' });
+		} else {
+			res.json(rows);
+		}
+	});
+});
+
+app.put('/api/settings/', (req, res) => {
+	const { param, value } = req.body;
+	db.run(`UPDATE settings SET value = ? WHERE param = ?`, [value, param], (err) => {
+		if (err) {
+			console.error(err.message);
+			res.status(500).json({ error: 'Внутренняя ошибка сервера' });
+		} else {
+			res.json({ message: 'Настройки сохранены' });
 		}
 	});
 });
