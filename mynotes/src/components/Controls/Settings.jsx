@@ -40,7 +40,7 @@ function Settings() {
 			}, {});
 			setAppSettings(newSettings);
 		} catch (e) {
-			console.error('Ошибка при получении заметок:', e.message);
+			console.error('Ошибка при получении настроек: ', e.message);
 		}
 	};
 
